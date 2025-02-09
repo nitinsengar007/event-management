@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eplanner login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="box">
+        <span class="borderline"></span>
+        <form>
+            <h2>LOGIN IN</h2>
+            <div class="inputbox">
+                <input type="text" required="required">
+                <span>Username</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <input type="password" required="required">
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="forgot-password.html"> Forget Password</a>
+                <a href="signup.html">Signup</a>
+            </div>
+            <input type="Submit" value="login"> 
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the form from reloading the page
+
+        const email = form.querySelector('input[type="text"]').value;
+        const password = form.querySelector('input[type="password"]').value;
+
+        // Define the endpoint and the payload
+        const endpoint = 'http://localhost:8000/api/user/login';
+        
+        const payload = { email, password };
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(`Login successful! Welcome, ${data.username}`);
+                // Redirect to the dashboard or home page
+                window.location.href = 'event.html';
+            } else {
+                const error = await response.json();
+                alert(`Login failed: ${error.message}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while trying to log in. Please try again.');
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

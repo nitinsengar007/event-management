@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eplanner Signup</title>
+    <link rel="stylesheet" href="signup.css">                                                                                                       
+</head>
+<body>
+    <div class="box">
+        <span class="borderline"></span>
+        <form>
+            <h2>SIGN UP</h2>
+            <div class="inputbox">
+                <input type="text" required="required">
+                <span>Username</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <input type="email" required="required">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <input type="password" required="required">
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <input type="password" required="required">
+                <span>Confirm Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="login.html">Already have an account? Login</a>
+            </div>
+           <input type="submit" value="Sign Up"> 
+        </form>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the form from reloading the page
+
+        const username = form.querySelector('input[type="text"]').value;
+        const email = form.querySelector('input[type="email"]').value;
+        const password = form.querySelectorAll('input[type="password"]')[0].value;
+        const confirmPassword = form.querySelectorAll('input[type="password"]')[1].value;
+
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            alert('Passwords do not match. Please try again.');
+            return;
+        }
+        const name = username;
+        // Define the endpoint and the payload
+        const endpoint = 'http://localhost:8000/api/user/register';
+        const payload = { name, email, password };
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(`Signup successful! Welcome, ${data.username}`);
+                // Redirect to the login page or home page
+                window.location.href = 'login.html';
+            } else {
+                const error = await response.json();
+                alert(`Signup failed: ${error.message}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while trying to sign up. Please try again.');
+        }
+    });
+});
+
+</script>
+</html>

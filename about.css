@@ -1,0 +1,178 @@
+/* LET */
+#let{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #e7d5cb;
+
+}
+
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* About Section */
+#about {
+    background-color: #fff;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+/* Team Section */
+.team {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.team-member {
+    width: 25%;
+    text-align: center;
+    background-color: #e7d5cb;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    font-size: 16px;
+    color: #715151;
+}
+
+/* Mission and Vision Section */
+.mission-vision {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.mission, .vision {
+    width: 45%;
+    background-color: #e7d5cb;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mission h2, .vision h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.mission p, .vision p {
+    font-size: 16px;
+    color: #555;
+}
+img {
+    width: 100%;
+    max-width: 300px; 
+    border-radius: 8px; 
+    transition: transform 0.3s ease; 
+}
+img:hover {
+    transform: scale(1.1);
+}
+
+.team-member .mission-vision {
+    background-color: #e7d5cb; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+.team-member:hover{
+    background-color: #ff7f50; 
+}
+.mission {
+    background-color: #e7d5cb; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+.mission:hover{
+    background-color: #ff7f50; 
+}
+
+.vision {
+    background-color: #e7d5cb; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+.vision:hover{
+    background-color: #ff7f50;
+}

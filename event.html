@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Booking Website</title>
+  <link rel="stylesheet" href="event.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.querySelector('.modal');
+    const closeModalButton = document.querySelector('.close-modal');
+    const overlay = document.querySelector('.overlay');
+    const venueSelect = document.querySelector('#venue-select');
+    const venueList = document.querySelector('.venue-list');
+
+    const venues = {
+        'Hotel': [
+            { name: 'Hotel Sunrise', image: 'hotels1.jpg', link: 'Hotel-Sunrise.html' },
+            { name: 'Beachside Hotel', image: 'beachhotel.jpg', link: 'beachside-hotel.html' },
+        ],
+        'Stadium': [
+            { name: 'Football Stadium', image: 'Etihad_Stadium.jpg', link: 'football.html' },
+            { name: 'Dharamshala Stadium', image: 'dharamshala.jpg', link: 'dharamshala-stadium.html' },
+        ],
+        'Ground': [
+            { name: 'R.K Banquet Hall', image: 'banquet.jpg', link: 'rkbanquet.html' },
+            { name: 'Lagoona Emerald', image: 'theleela.jpg', link: 'LagoonaEmerald.html' },
+        ],
+        'Seminar Hall': [
+            { name: 'Business Seminar Hall', image: 'chaos.jpg', link: 'business-seminar-hall.html' },
+            { name: 'Tech Seminar Room', image: 'leela.jpg', link: 'tech-seminar-room.html' },
+        ],
+        'Conference Hall': [
+            { name: 'Corporate Conference Room', image: 'conference.jpg', link: 'corporate-conference-room.html' },
+            { name: 'International Conference Hall', image: 'international.jpg', link: 'international-conference-hall.html' },
+        ],
+    };
+
+    venueSelect.addEventListener('change', function () {
+        const selectedVenue = venueSelect.value;
+        displayVenues(selectedVenue);
+    });
+
+    function displayVenues(type) {
+        venueList.innerHTML = ''; // Clear previous listings
+        const selectedVenues = venues[type];
+
+        selectedVenues.forEach(venue => {
+            const venueCard = document.createElement('div');
+            venueCard.classList.add('venue-card');
+            venueCard.innerHTML = `
+                <div class="image-container">
+                    <img src="${venue.image}" alt="${venue.name}">
+                </div>
+                <h4>${venue.name}</h4>
+                <p>Book your stay at ${venue.name}.</p>
+                <button class="book-now">Book Now</button>
+            `;
+            venueList.appendChild(venueCard);
+
+            // Redirect to venue details when clicking the card
+            venueCard.addEventListener('click', function () {
+                window.location.href = venue.link; // Redirect to the respective venue page
+            });
+
+            // Add click event for the "Book Now" button
+            venueCard.querySelector('.book-now').addEventListener('click', function (e) {
+                e.stopPropagation(); // Prevent the card's click event
+                openModal(venue.name);
+            });
+        });
+    }
+
+    function openModal(venueName) {
+        modal.querySelector('.modal-venue-name').innerText = venueName;
+        modal.classList.add('active');
+        overlay.classList.add('active');
+    }
+
+    function closeModal() {
+        overlay.classList.remove('active');
+        modal.classList.remove('active');
+    }
+
+    closeModalButton.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    const form = modal.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Booking confirmed for ' + modal.querySelector('.modal-venue-name').innerText + '!');
+        closeModal();
+    });
+
+    // Trigger the initial venue display
+    displayVenues(venueSelect.value);
+});
+
+   </script>
+
+     <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book <span class="modal-venue-name"></span></h2>
+            <form>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+        
+                <label for="date">Event Date:</label>
+                <input type="date" id="date" required>
+        
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" min="1" placeholder="Number of guests" required>
+        
+                <button type="submit" class="submit-booking">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+    <div class="overlay"></div>  
+
+    <header>
+        <div class="container">
+            <h1 class="logo">eplanner</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#venues">Venues</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="call.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="home" class="hero">
+        <h2>Find and Book Your Perfect Event Venue</h2>
+        <button class="book-btn">Book Now</button>
+        <div class="slideshow">
+            <img src="hotels1.jpg" alt="Hotel 1">
+            <img src="banquet.jpg" alt="Hotel 2">
+            <img src="leela.jpg" alt="Auditorium">
+            <img src="Etihad_Stadium.jpg" alt="Stadium">
+            <img src="conference.jpg" alt="Conference Hall">
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.slideshow img');
+            let currentIndex = 0;
+
+            function changeImage() {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
+                images[currentIndex].classList.add('active');
+            }
+
+            // Initially set the first image as active
+            images[currentIndex].classList.add('active');
+
+            // Change images every 3 seconds
+            setInterval(changeImage, 3000);
+        });
+    </script>
+
+
+    <section id="venues" class="venues">
+        <h3>Available Venues</h3>
+        <br><label for="venue-select">Choose a Venue Type:</label>
+        <select id="venue-select">
+            <option value="Hotel">Hotel</option>
+            <option value="Stadium">Stadium</option>
+            <option value="Ground">Ground</option>
+            <option value="Seminar Hall">Seminar Hall</option>
+            <option value="Conference Hall">Conference Hall</option>
+        </select><br>
+        <div class="venue-list venue-grid"></div>
+    </section>
+<footer style="background-color: #333; color: #ecf0f1; padding: 20px 10px; font-size: 14px; text-align: center;">
+        <div style="margin-bottom: 10px;">
+          <h4 style="margin: 5px 0;">Event Planner</h4>
+          <p style="margin: 0;">Book Venues Online from Anywhere.</p>
+        </div>
+        <nav style="margin: 15px 0;">
+          <a href="event.html" style="color: #ecf0f1; margin: 0 10px; text-decoration: none;">Home</a>
+          <a href="about.html" style="color: #ecf0f1; margin: 0 10px; text-decoration: none;">About</a>
+          <a href="#venues" style="color: #ecf0f1; margin: 0 10px; text-decoration: none;">Services</a>
+          <a href="call.html" style="color: #ecf0f1; margin: 0 10px; text-decoration: none;">Contact</a>
+          <a href="/privacy" style="color: #ecf0f1; margin: 0 10px; text-decoration: none;">Privacy Policy</a>
+        </nav>
+        <div style="margin-top: 10px;">
+          <p style="margin: 0;">&copy; 2025 YourWebsiteName. All rights reserved.</p>
+          <p style="margin: 5px 0;">Follow us: 
+            <a href="https://facebook.com" style="color: #ecf0f1; margin: 0 5px; text-decoration: none;">Facebook</a> | 
+            <a href="https://twitter.com" style="color: #ecf0f1; margin: 0 5px; text-decoration: none;">Twitter</a> | 
+            <a href="https://linkedin.com" style="color: #ecf0f1; margin: 0 5px; text-decoration: none;">LinkedIn</a>
+          </p>
+        </div>
+      </footer>
+
+</body>
+</html>

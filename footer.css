@@ -1,0 +1,102 @@
+/* Footer Styling */
+.footer {
+    background-color: rgba(252, 252, 252, 0.9); /* Light background color for footer */
+    font-family: 'Poppins', sans-serif; /* Consistent font-family */
+    font-weight: bold;
+    border-top: none; /* Remove any unwanted border */
+    padding-bottom: 0; /* Remove bottom padding to avoid extra space */
+}
+
+/* Footer Item Styling */
+.footer-item {
+    margin-bottom: 30px;
+}
+
+/* Logo and Description */
+.footer-item h3 {
+    font-size: 32px;
+    color: #ff5722; /* Orange color for the logo */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-decoration: none; /* Remove underline (blue line) under Project Mate */
+}
+
+.footer-item h3 i {
+    color: #ff5722; /* Ensuring icon also has the same color as the logo */
+}
+
+/* Description Text */
+.footer-item p {
+    font-size: 16px;
+    color: #000000; /* Black color for description text */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Footer Button Styling */
+.footer-btn .btn {
+    background-color: #ff5722; /* Orange background color */
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.footer-btn .btn:hover {
+    background-color: #e64a19; /* Darker orange on hover */
+    color: white;
+}
+
+/* Mail Section */
+.footer-item h4 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5722; /* Orange color for subheading (Mail Us) */
+    margin-bottom: 20px;
+}
+
+/* Mail Box and Icon */
+.footer-item .btn-xl-square {
+    background-color: #ff5722; /* Orange background for the envelope icon box */
+    color: white; /* White color for icon */
+    padding: 20px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.footer-item .btn-xl-square:hover {
+    background-color: #e64a19; /* Darker orange on hover */
+}
+
+/* Copyright Section Styling */
+.footer-bottom {
+    margin-top: 30px;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #000000; /* Black color for copyright text */
+}
+
+/* Remove extra bottom space */
+.container-fluid.footer {
+    padding-top: 40px;
+    padding-bottom: 10px; /* Reduced bottom padding */
+}
+
+@media (max-width: 767px) {
+    /* Stack elements vertically on smaller screens */
+    .footer-item {
+        text-align: center;
+    }
+
+    .footer-btn {
+        justify-content: center;
+    }
+
+    .footer-item h4 {
+        margin-top: 20px;
+    }
+}
